@@ -1,13 +1,6 @@
 import random
 
-words = [
-    "elephant", "rainbow", "jazz", "ocean", "butterfly", "whisper", "mountain", "courage",
-    "infinity", "harmony", "sunset", "chocolate", "laughter", "adventure", "sparkle", "guitar",
-    "wonder", "serendipity", "echo", "inspiration", "zenith", "mystery", "quasar", "umbrella",
-    "silhouette", "enigma", "effervescent", "cascade", "tranquility", "velvet", "labyrinth",
-    "obsidian", "ethereal", "radiance", "solitude", "paradox", "cosmic", "infinity", "cathedral",
-    "ripple", "synchronicity", "whimsical", "ephemeral", "enchanting", "quintessence", "melody",
-    "silhouette", "ephemeral", "sonnet"]
+words = ["coding", "programming", "python"]
 guessed_letters = []
 word_to_guess = random.choice(words)
 
@@ -23,14 +16,15 @@ def display_word(word):
     return console_output
 
 
-def hangman(max_tries):
-    initial_tries = 0
+def hangman():
+    max_tries = 6
+    tries = 0
     global guessed_letters
 
     print("Welcome to Hangman!")
     print(display_word(word_to_guess))
 
-    while initial_tries < max_tries:
+    while tries < max_tries:
         guess = input("Guess a letter: ").lower()
 
         if len(guess) != 1 or not guess.isalpha():
@@ -43,8 +37,8 @@ def hangman(max_tries):
         guessed_letters.append(guess)
 
         if guess not in word_to_guess:
-            initial_tries += 1
-            print(f"Incorrect! {max_tries - initial_tries} tries remaining.")
+            tries += 1
+            print(f"Incorrect! {max_tries - tries} tries remaining.")
         else:
             print("Correct!")
 
@@ -58,4 +52,5 @@ def hangman(max_tries):
     if "_" in current_display:
         print(f"You're out of tries! The  word was '{word_to_guess}'.")
 
-# hangman(6)
+
+hangman()
